@@ -25,7 +25,7 @@
     name: maven
     image: maven
     volumes:
-      - volume_one:/opt/war/  
+      - volume_one:/opt/boxfuse/target/  
     recreate: yes
 
 - name: Log into DockerHub 
