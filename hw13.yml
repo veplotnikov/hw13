@@ -7,11 +7,24 @@
       region: eu-central-1
       instance_type: t2.micro
       ami: ami-05f7491af5eef733a   # Ubuntu 20.04 LTS
-      keypair: my_keys # pem file name
+#      keypair: my_keys # pem file name
 #      subnetid: subnet-0e80c6bbb664c7138
       project_name: hw13
   
   tasks:
+
+    - name: Create an EC2 key
+      ec2_key:
+        name: "{{ project_name }}-key"
+        region: "{{ region }}"
+      register: ec2_key
+
+    - name: Save private key
+      copy: 
+        content: "{{ ec2_key.key.private_key }}" 
+        dest: "../aws-private.pem" 
+        mode: 0600
+      when: ec2_key.changed
     
     - name: Create security group
       ec2_group:
@@ -38,7 +51,7 @@
 
     - name: Create an ec2 instance
       ec2:
-        key_name: "{{ keypair }}"
+        key_name: "{{ project_name }}-key"
         group: "{{ project_name }}_security_group"  # security group name
         instance_type: "{{ instance_type }}"
         image: "{{ ami }}"
