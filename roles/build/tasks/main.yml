@@ -31,7 +31,7 @@
 - name: Log into DockerHub 
   docker_login:
     username: volodyaaggregion
-    password: 44709b59-8fcf-4327-a6fd-fa3a109e7837
+    password: ded6747d-f67d-4b44-9e27-b1e5133b0b98
 
 
 - name: Build image tomcat
