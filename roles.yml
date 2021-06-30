@@ -6,5 +6,6 @@
     - create
 - name: Prepare instance
   hosts: ec2_hosts
+  become: yes
   roles:
     - prepair
