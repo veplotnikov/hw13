@@ -33,10 +33,7 @@
     rules_egress:
       - proto: all
         cidr_ip: 0.0.0.0/0
-
-- name: ecr-repo Create repos
-  ecs_ecr: name=super/cool    
-
+ 
 - name: Create an ec2 instance and add to hosts
   include_tasks: create_ec2.yml 
   loop: "{{name_instance}}"
