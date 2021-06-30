@@ -1,52 +1,52 @@
-    - name: Create an EC2 key
-      ec2_key:
-        name: "{{ project_name }}-key"
-        region: "{{ region }}"
-      register: ec2_key
+- name: Create an EC2 key
+  ec2_key:
+    name: "{{ project_name }}-key"
+     region: "{{ region }}"
+  register: ec2_key
 
-    - name: Save private key
-      copy: 
-        content: "{{ ec2_key.key.private_key }}" 
-        dest: "../aws-private.pem" 
-        mode: 0600
-      when: ec2_key.changed
+- name: Save private key
+  copy: 
+    content: "{{ ec2_key.key.private_key }}" 
+    dest: "../aws-private.pem" 
+    mode: 0600
+  when: ec2_key.changed
     
-    - name: Create security group
-      ec2_group:
-       name: "{{ project_name }}_security_group"
-       description: "{{ project_name }} security group"
-       region: "{{ region }}"
-       rules:
-         - proto: tcp  # ssh
-           from_port: 22
-           to_port: 22
-           cidr_ip: 0.0.0.0/0
-         - proto: tcp  # http
-           from_port: 80
-           to_port: 80
-           cidr_ip: 0.0.0.0/0
-         - proto: tcp  # https
-           from_port: 443
-           to_port: 443
-           cidr_ip: 0.0.0.0/0
-       rules_egress:
-         - proto: all
-           cidr_ip: 0.0.0.0/0
+- name: Create security group
+  ec2_group:
+    name: "{{ project_name }}_security_group"
+    description: "{{ project_name }} security group"
+    region: "{{ region }}"
+    rules:
+      - proto: tcp  # ssh
+        from_port: 22
+        to_port: 22
+        cidr_ip: 0.0.0.0/0
+      - proto: tcp  # http
+        from_port: 80
+        to_port: 80
+        cidr_ip: 0.0.0.0/0
+      - proto: tcp  # https
+        from_port: 443
+        to_port: 443
+        cidr_ip: 0.0.0.0/0
+    rules_egress:
+      - proto: all
+        cidr_ip: 0.0.0.0/0
     
 
-    - name: Create an ec2 instance
-      ec2:
-        key_name: "{{ project_name }}-key"
-        group: "{{ project_name }}_security_group"  # security group name
-        instance_type: "{{ instance_type }}"
-        image: "{{ ami }}"
-        wait: true
-        region: "{{ region }}"
-        count: 1  # default
-        vpc_subnet_id: subnet-09c48563
-        count_tag:
-          Name: Demo
-        instance_tags:
-          Name: Demo
-        assign_public_ip: yes
-      register: ec2
+- name: Create an ec2 instance
+  ec2:
+    key_name: "{{ project_name }}-key"
+    group: "{{ project_name }}_security_group"  # security group name
+    instance_type: "{{ instance_type }}"
+    image: "{{ ami }}"
+    wait: true
+    region: "{{ region }}"
+    count: 1  # default
+    vpc_subnet_id: subnet-09c48563
+    count_tag:
+      Name: "{{name_instance}}"
+    instance_tags:
+      Name: "{{name_instance}}"
+    assign_public_ip: yes
+  register: ec2
