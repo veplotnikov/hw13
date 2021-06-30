@@ -1,5 +1,4 @@
 ---
-
 - name: Run container tomcat
   docker_container:
     name: tomcat
