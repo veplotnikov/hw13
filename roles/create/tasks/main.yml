@@ -50,5 +50,6 @@
     instance_tags:
       Name: "{{item}}"
     assign_public_ip: yes
-  loop: "{{name_instance}}"
   register: ec2
+  loop: "{{name_instance}}"
+  
