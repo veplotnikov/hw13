@@ -46,8 +46,9 @@
     count: 1  # default
     vpc_subnet_id: subnet-09c48563
     count_tag:
-      Name: "{{name_instance}}"
+      Name: "{{item}}"
     instance_tags:
-      Name: "{{name_instance}}"
+      Name: "{{item}}"
     assign_public_ip: yes
+  loop: "{{name_instance}}"
   register: ec2
