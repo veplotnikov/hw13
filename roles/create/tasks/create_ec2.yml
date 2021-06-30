@@ -17,13 +17,12 @@
     assign_public_ip: yes
   register: ec2
 
-- name: Print all available facts
-  ansible.builtin.debug:
-    var: ec2.instances.public_ip
-
-#- name: Add IP to ec2_hosts group
-#  add_host: 
-#    hostname: "{{ ec2.instances.public_ip }}" 
-#    groups:
-#      - ec2_hosts 
-#      - "{{item}}"
+- name: Add IP to  groups
+  add_host:
+    hostname: "{{ item1.public_ip }}"
+    groups:
+      - ec2_hosts
+      - "{{item}}"
+  with_items: "{{ec2.instances}}"
+  loop_control:
+    loop_var: item1
