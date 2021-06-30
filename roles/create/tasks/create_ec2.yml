@@ -1,4 +1,4 @@
-  ---
+---
 - name: Create an ec2 instance
   ec2:
     key_name: "{{ project_name }}-key"
