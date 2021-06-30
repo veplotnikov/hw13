@@ -1,0 +1,6 @@
+---
+- name: Create a new Demo EC2 instance
+  hosts: localhost
+  gather_facts: False
+  roles:
+    - create
