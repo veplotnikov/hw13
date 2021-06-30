@@ -7,16 +7,11 @@
       region: eu-central-1
       instance_type: t2.micro
       ami: ami-05f7491af5eef733a   # Ubuntu 20.04 LTS
-      keypair: vova-key # pem file name
+      keypair: my_keys # pem file name
 #      subnetid: subnet-0e80c6bbb664c7138
       project_name: hw13
   
   tasks:
-    - name: Create subnet for servers
-      ec2_vpc_subnet:
-        state: present
-        vpc_id: "{{project_name}}-net"
-        cidr: 10.0.1.16/28
     
     - name: Create security group
       ec2_group:
@@ -50,6 +45,7 @@
         wait: true
         region: "{{ region }}"
         count: 1  # default
+        vpc_subnet_id: subnet-09c48563
         count_tag:
           Name: Demo
         instance_tags:
