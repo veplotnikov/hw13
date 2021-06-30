@@ -33,7 +33,7 @@
        rules_egress:
          - proto: all
            cidr_ip: 0.0.0.0/0
-    register: test_firewall
+    
 
   - name: Create an ec2 instance
     ec2:
