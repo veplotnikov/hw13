@@ -1,7 +1,8 @@
+---
 - name: Create an EC2 key
   ec2_key:
     name: "{{ project_name }}-key"
-     region: "{{ region }}"
+    region: "{{ region }}"
   register: ec2_key
 
 - name: Save private key
