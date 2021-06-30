@@ -33,6 +33,10 @@
     username: volodyaaggregion
     password: ded6747d-f67d-4b44-9e27-b1e5133b0b98
 
+- name: copy file to workdir tomcat
+  shell:  cp /var/lib/docker/volumes/volume_one/_data/hello-1.0.war /app/boxfuse/tomcat/
+
+
 
 - name: Build image tomcat
   docker_image: 
