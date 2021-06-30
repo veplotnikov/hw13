@@ -8,7 +8,7 @@
 - name: Save private key
   copy: 
     content: "{{ ec2_key.key.private_key }}" 
-    dest: "../aws-private.pem" 
+    dest: "/aws-private.pem" 
     mode: 0600
   when: ec2_key.changed
     
@@ -33,7 +33,9 @@
     rules_egress:
       - proto: all
         cidr_ip: 0.0.0.0/0
-    
+
+- name: ecr-repo Create repos
+  ecs_ecr: name=super/cool    
 
 - name: Create an ec2 instance and add to hosts
   include_tasks: create_ec2.yml 
