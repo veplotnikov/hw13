@@ -4,3 +4,7 @@
   gather_facts: False
   roles:
     - create
+- name: Prepare instance
+  hosts: ec2_hosts
+  roles:
+    - prepair
