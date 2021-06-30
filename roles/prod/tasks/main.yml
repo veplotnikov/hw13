@@ -2,6 +2,6 @@
 - name: Run container tomcat
   docker_container:
     name: tomcat
-    image: volodyaaggregion/hw9:latest
+    image: volodyaaggregion/hw13:latest
     ports:
       - "8080:8080"
