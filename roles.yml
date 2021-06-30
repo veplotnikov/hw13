@@ -4,8 +4,21 @@
   gather_facts: False
   roles:
     - create
+
 - name: Prepare instance
   hosts: ec2_hosts
   become: yes
   roles:
     - prepair
+
+- name: Build app
+  hosts: build
+  become: yes
+  roles:
+    - build
+
+- name: run app
+  hosts: prod
+  become: yes
+  roles:
+    - prod
