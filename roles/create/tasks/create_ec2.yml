@@ -18,7 +18,7 @@
 
 - name: Print all available facts
   ansible.builtin.debug:
-    var: ansible_facts
+    var: ec2.instances
 
 #- name: Add IP to ec2_hosts group
 #  add_host: 
