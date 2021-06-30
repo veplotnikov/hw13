@@ -35,18 +35,18 @@
            cidr_ip: 0.0.0.0/0
     
 
-  - name: Create an ec2 instance
-    ec2:
-      key_name: "{{ keypair }}"
-      group: "{{ project_name }}_security_group"  # security group name
-      instance_type: "{{ instance_type }}"
-      image: "{{ ami }}"
-      wait: true
-      region: "{{ region }}"
-      count: 1  # default
-      count_tag:
-        Name: Demo
-      instance_tags:
-        Name: Demo
-      assign_public_ip: yes
-    register: ec2
+    - name: Create an ec2 instance
+      ec2:
+        key_name: "{{ keypair }}"
+        group: "{{ project_name }}_security_group"  # security group name
+        instance_type: "{{ instance_type }}"
+        image: "{{ ami }}"
+        wait: true
+        region: "{{ region }}"
+        count: 1  # default
+        count_tag:
+          Name: Demo
+        instance_tags:
+          Name: Demo
+        assign_public_ip: yes
+      register: ec2
