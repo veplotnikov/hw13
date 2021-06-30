@@ -12,6 +12,12 @@
       project_name: hw13
   
   tasks:
+    - name: Create subnet for servers
+      ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{project_name}}_net"
+        cidr: 10.0.1.16/28
+    
     - name: Create security group
       ec2_group:
        name: "{{ project_name }}_security_group"
