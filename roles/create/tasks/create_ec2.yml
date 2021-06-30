@@ -5,7 +5,7 @@
     group: "{{ project_name }}_security_group"  # security group name
     instance_type: "{{ instance_type }}"
     image: "{{ ami }}"
-    id: "{{ project_name }}-{{item}}-1"
+    id: "{{ project_name }}-{{item}}-11"
     wait: true
     region: "{{ region }}"
     count: 1  # default
