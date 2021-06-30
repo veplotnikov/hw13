@@ -1,0 +1,8 @@
+---
+region: eu-central-1
+instance_type: t2.micro
+ami: ami-05f7491af5eef733a   # Ubuntu 20.04 LTS
+project_name: hw13
+name: 
+  - build
+  - prod
