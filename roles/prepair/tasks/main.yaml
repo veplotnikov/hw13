@@ -1,4 +1,11 @@
 ---
+- name: Wait for system to become reachable over WinRM
+  wait_for_connection:
+    timeout: 900
+
+- name: Gather facts for first time
+  setup:
+
 - name: install Docker
   apt:  name={{ packages }} state=present update_cache=yes
    
