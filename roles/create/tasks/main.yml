@@ -8,7 +8,14 @@
 - name: Save private key
   copy: 
     content: "{{ ec2_key.key.private_key }}" 
-    dest: "/aws-private.pem" 
+    dest: "/opt/aws-private-bild.pem" 
+    mode: 0600
+  when: ec2_key.changed
+
+- name: Save private key
+  copy: 
+    content: "{{ ec2_key.key.private_key }}" 
+    dest: "/opt/aws-private-prod.pem" 
     mode: 0600
   when: ec2_key.changed
     
